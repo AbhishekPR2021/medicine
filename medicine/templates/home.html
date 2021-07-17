@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{category.desc | truncatewords:155}}
+    {% else %}
+        Welcome to cart store
+    {% endif %}
+{% endblock %}
+
+<!--    title block     -->
+
+{% block title %}
+    {% if category %}
+        {{ category.name }}
+    {% else %}
+        See our collection
+    {% endif %}
+{% endblock %}
+
+<!--block contents-->
+{% block content %}
+    {% if category %}
+
+<div class="wrapper row2">
+  <section class="hoc container clear">
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <h6 class="heading"><a href="{% url 'medicine_app:home' %}">Our product collection</a> | {{ category.name }}</h6>
+<!--      <p>Elementum nisi ac volutpat vestibulum enim mi tincidunt eros</p>-->
+    </div>
+
+    {% endif %}
+
+    {% if category %}
+<div class="wrapper bgded overlay gradient" style="background-image:url('{{category.img.url}}');">
+  <div id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">{{category.name}}</h6>
+    <ul>
+      <li><a href="{% url 'medicine_app:home' %}">Home</a></li>
+      <li>{{category.name}}</li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+              <p>{{category.desc}}</p>
+    </ul>
+  </section>
+</div>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <section id="introblocks">
+      <div class="sectiontitle">
+      </div>
+
+
+    <!-- ################################################################################################ -->
+
+     {% else %}
+<!--      display banner    -->
+    <div class="wrapper bgded overlay gradient" style="background-image:url({% static 'images/flibcart.jpg' %});">
+      <div id="pageintro" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <article>
+          <p>Place where you and your loved ones receive care.</p>
+          <h3 class="heading">We fight for the betterment of our patient's health.</h3>
+          <p>Quality products only</p>
+          <footer>
+            <ul class="nospace inline pushright">
+              <li><a class="btn inverse" href="#collection">Go to our collection</a></li>
+            </ul>
+          </footer>
+        </article>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <section id="introblocks">
+      <div class="sectiontitle">
+      </div>
+
+      {% endif %}
+
+      <!--  show products   -->
+    <center>
+        <a id="collection"></a>
+      <ul class="nospace group">
+
+          {% for product in products %}
+
+        <li class="one_quarter">
+          <article><a href="{{product.get_url}}"><img src="{{product.img.url}}" style="height:250px;width:auto;"></a>
+            <h6 class="heading">{{product.name}}</h6>
+            <p><sup>$</sup><strong>{{product.price}}</strong></p>
+            <footer><a class="btn" href="{{product.get_url}}">Details</a></footer>
+          </article>
+        </li>
+
+
+
+          {% endfor %}
+
+      </ul>
+    </center>
+    </section>
+<!-- paginator-->
+<br><br>
+<center>
+    <div class="row mx-auto">
+        {% for pg in products.paginator.page_range %}
+        <a href="?page={{pg}}" class="btn btn-light btn-light {% if products.number == pg %} activate {% endif %}">{{pg}}</a>
+        {% endfor %}
+    </div>
+</center>
+
+
+
+
+          {% endblock %}
+
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+

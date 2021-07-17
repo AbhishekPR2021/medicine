@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+Template Name: Trealop
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Trealop</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'layout/styles/style.css' %}" rel="stylesheet" type="text/css" media="all">
+
+<!--<link rel="stylesheet" href="{% static 'layout/styles/style.css' %}">-->
+</head>
+<body id="top">
+<div>
+
+    {% include 'nav.html' %}
+    {% block content %}
+    {% endblock %}
+</div>
+<div>
+    {% include 'footer.html' %}
+</div>
+
+<script src="{% static 'layout/scripts/jquery_cart.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
